@@ -14,4 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [Controller::class, 'index']);
+Route::get('/algorithm/iterative/{number}', [Controller::class, 'iterative'])->name('algorithm.iterative')->where('id', '[0-9]+');
+Route::get('/algorithm/recursive/{number}', [Controller::class, 'recursive'])->name('algorithm.recursive')->where('id', '[0-9]+');

@@ -2,30 +2,45 @@
 
 namespace App\Http\Controllers;
 
+use App\Concerns\ApiResponse;
 use App\Exceptions\OutOfRangeException;
 use App\Services\Abstracts\AlgorithmAbstract;
 use App\Services\IterativeStrategy;
 use App\Services\RecursiveStrategy;
 use App\Services\Strategy\ContextStrategy;
+use Exception;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController
 {
-    use AuthorizesRequests;
-    use DispatchesJobs;
+    use ApiResponse;
     use ValidatesRequests;
 
-    public function index(ContextStrategy $context)
+    public function recursive(ContextStrategy $context, $number): JsonResponse
     {
-//        $context->setStrategy(new RecursiveStrategy());
-//        echo $context->runAlgorithm(40);
+        try {
+            $context->setStrategy(new RecursiveStrategy());
+            $response = $context->runAlgorithm($number);
+        } catch (Exception $exception) {
+            return $this->respondWithError($exception->getMessage(), [], 400);
+        }
 
-        echo '<br />';
+        return $this->respond($response);
+    }
 
-        $context->setStrategy(new IterativeStrategy());
-        echo $context->runAlgorithm(600_000_000);
+    public function iterative(ContextStrategy $context, $number): JsonResponse
+    {
+        try {
+            $context->setStrategy(new IterativeStrategy());
+            $response = $context->runAlgorithm($number);
+        } catch (Exception $exception) {
+            return $this->respondWithError($exception->getMessage(), [], 400);
+        }
+
+        return $this->respond($response);
     }
 }
