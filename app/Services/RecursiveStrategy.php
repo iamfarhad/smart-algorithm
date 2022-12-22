@@ -9,7 +9,7 @@ class RecursiveStrategy extends AlgorithmAbstract
 {
     private const MIN_RANGE = 0;
 
-    private CONST MAX_RANGE = 1_000_000_000;
+    private const MAX_RANGE = 1_000_000_000;
 
     public function __construct()
     {
@@ -20,13 +20,11 @@ class RecursiveStrategy extends AlgorithmAbstract
      */
     public function doAlgorithm(int $number): int
     {
-        if($number < 0 || $number > self::MAX_RANGE)
-        {
+        if ($number < 0 || $number > self::MAX_RANGE) {
             throw new OutOfRangeException();
         }
 
-        if($number <2)
-        {
+        if ($number < 2) {
             return $number;
         }
 
