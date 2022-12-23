@@ -14,22 +14,12 @@ $ docker-compose exec -it algorithm ./vendor/bin/phpunit --coverage-html ./html-
 ## Time and memory complexity
 ### Iterative Algorithm
 
-Time complexity is O(n)
-Memory complexity is O(n)
+The time complexity is T(N).
+
+The Space complexity is O(N) for a iterative series.
 
 ### Recursive Algorithm
 
-The time complexity of the recursive is T(2^N), i.e., exponential.
+The time complexity is T(2^N).
 
-The Space complexity of the recursive code is O(N) for a recursive series.
-
-## The best Algorithm is
-
-```
-namespace App\Services;
-
-class ModernStrategy extends AlgorithmAbstract
-{
-}
-
-```
+The Space complexity is O(N) for a recursive series.

@@ -6,7 +6,6 @@ use App\Concerns\ApiResponse;
 use App\Exceptions\OutOfRangeException;
 use App\Services\Abstracts\AlgorithmAbstract;
 use App\Services\IterativeStrategy;
-use App\Services\ModernStrategy;
 use App\Services\RecursiveStrategy;
 use App\Services\Strategy\ContextStrategy;
 use Exception;
@@ -37,18 +36,6 @@ class Controller extends BaseController
     {
         try {
             $context->setStrategy(new IterativeStrategy());
-            $response = $context->runAlgorithm($number);
-        } catch (Exception $exception) {
-            return $this->respondWithError($exception->getMessage(), [], 400);
-        }
-
-        return $this->respond($response);
-    }
-
-    public function modern(ContextStrategy $context, $number): JsonResponse
-    {
-        try {
-            $context->setStrategy(new ModernStrategy());
             $response = $context->runAlgorithm($number);
         } catch (Exception $exception) {
             return $this->respondWithError($exception->getMessage(), [], 400);
