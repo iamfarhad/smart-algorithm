@@ -19,5 +19,5 @@ Memory complexity is O(n)
 
 ### Recursive Algorithm
 
-Time complexity is O(n^2)
-Memory complexity is O(n)
+The time complexity of the recursive is T(2^N), i.e., exponential.
+The Space complexity of the recursive code is O(N) for a recursive series.
