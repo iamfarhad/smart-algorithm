@@ -16,7 +16,7 @@ $ docker-compose exec -it algorithm ./vendor/bin/phpunit --coverage-html ./html-
 
 The time complexity is T(N).
 
-The Space complexity is O(N) for a recursive series.
+The Space complexity is O(N) for a iterative series.
 
 ### Recursive Algorithm
 
