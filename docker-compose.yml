@@ -1,0 +1,57 @@
+version: "3.8"
+services:
+    algorithm:
+        container_name: algorithm
+        build:
+            context: .
+            dockerfile: ./docker/php/Dockerfile
+        expose:
+            - 9000
+        volumes:
+            - .:/usr/src/app
+            - ./public:/usr/src/app/public
+        depends_on:
+            - algorithm_mysql
+        networks:
+            - app_network
+
+    algorithm_nginx:
+        container_name: algorithm_nginx
+        build:
+            context: .
+            dockerfile: ./docker/nginx/Dockerfile
+        volumes:
+            - ./public:/usr/src/app/public
+        ports:
+            - 8009:80
+        depends_on:
+            - algorithm
+        environment:
+            NGINX_FPM_HOST: algorithm
+            NGINX_ROOT: /usr/src/app/public
+        networks:
+            - app_network
+
+    algorithm_mysql:
+        image: mariadb:10.10
+        restart: always
+        environment:
+            MYSQL_DATABASE: algo
+            MYSQL_USER: algo
+            MYSQL_PASSWORD: algo
+            MYSQL_ROOT_PASSWORD: root
+        volumes:
+            - /opt/algo/db/init:/docker-entrypoint-initdb.d
+            - /opt/algo/db/data:/var/lib/mysql
+        command:
+            - '--character-set-server=utf8mb4'
+            - '--collation-server=utf8mb4_general_ci'
+    algorithm_redis:
+        container_name: algorithm_redis
+        image: redis:latest
+        networks:
+            - app_network
+
+networks:
+    app_network:
+        driver: bridge

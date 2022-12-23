@@ -29,6 +29,8 @@ class IterativeStrategy extends AlgorithmAbstract
             $heap[] = $this->getSumOfSeparatedNumber($heap[$index - 1]) + $this->getSumOfSeparatedNumber($heap[$index - 2]);
         }
 
-        return $heap[$number];
+        $result = $heap[$number];
+        $heap = [];
+        return $result;
     }
 }

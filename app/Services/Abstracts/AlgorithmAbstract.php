@@ -4,7 +4,7 @@ namespace App\Services\Abstracts;
 
 abstract class AlgorithmAbstract
 {
-    abstract public function doAlgorithm(int $int): int;
+    abstract public function doAlgorithm(int $number): int;
 
     protected function getSumOfSeparatedNumber($number): int
     {
