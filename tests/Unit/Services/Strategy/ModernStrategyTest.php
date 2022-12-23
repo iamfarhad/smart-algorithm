@@ -5,7 +5,9 @@ namespace Tests\Unit\Services\Strategy;
 use App\Exceptions\OutOfRangeException;
 use App\Services\Abstracts\AlgorithmAbstract;
 use App\Services\IterativeStrategy;
+use App\Services\ModernStrategy;
 use PHPUnit\Framework\TestCase;
+use ReflectionException;
 use ReflectionMethod;
 use Tests\UnitTestCase;
 
@@ -15,7 +17,7 @@ class ModernStrategyTest extends UnitTestCase
 
     public function setUp(): void
     {
-        $this->algorithmAbstract = new \App\Services\ModernStrategy();
+        $this->algorithmAbstract = new ModernStrategy();
     }
 
     /**
@@ -65,7 +67,6 @@ class ModernStrategyTest extends UnitTestCase
 
     /**
      * @throws ReflectionException
-     * @throws \ReflectionException
      */
     public function test_get_success_sum_of_separated_digits(): void
     {
