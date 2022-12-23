@@ -17,9 +17,7 @@ $ docker-compose exec -it algorithm ./vendor/bin/phpunit --coverage-html ./html-
 Time complexity is O(n)
 Memory complexity is O(n)
 
-### Iterative Algorithm
+### Recursive Algorithm
 
 Time complexity is O(n^2)
 Memory complexity is O(n)
-
-Description
